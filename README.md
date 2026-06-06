@@ -28,4 +28,5 @@ Say any of these to trigger:
 
 ## Files
 
-- `SKILL.md` — Main skill definition
+- `SKILL.md` — good-morning skill (cold-start protocol)
+- `update-status-SKILL.md` — update-status skill (session state capture)

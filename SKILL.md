@@ -201,7 +201,7 @@ If STATUS.md does not exist at `~/.claude/STATUS.md`:
 
 If learning-tracker.md does not exist at `~/.claude/progress/learning-tracker.md`:
 
-1. Create it from the template at `~/.claude/sessions/SESSION-TEMPLATE.md` structure
+1. Create it with the default learning tracker structure (Quick Stats, Domains with Mastered/In Progress/Not Started tables, Knowledge Gaps table, Session History table)
 2. Skip Learning Status in Momentum State output
 
 ---

@@ -96,10 +96,84 @@ Read the STATUS.md file at:
 ~/.claude/STATUS.md
 ```
 
-If the file does not exist, create it using the STATUS.md Template
-defined in the good-morning SKILL.md (look for "# STATUS.md Template" section).
-That template includes: Active Threads, Holding Area, Energy Baseline,
-Last Session, Momentum Score Trend, Weekly Review Log.
+If the file does not exist, create it from this template:
+
+```markdown
+---
+schema-version: 1
+---
+
+# STATUS.md
+
+> Source of truth for Momentum OS context recovery.
+> Update at end of every session. Read at start of every session.
+
+---
+
+## Active Threads
+
+### Thread 1 — (Slot Available)
+
+Maximum 3 active threads.
+
+### Thread 2 — (Slot Available)
+
+### Thread 3 — (Slot Available)
+
+---
+
+## Holding Area
+
+> New signals that haven't been attached to a thread yet.
+> Auto-expire after 24h if not claimed.
+
+| Signal | Received | Expires | Related Theme |
+|--------|----------|---------|---------------|
+
+---
+
+## Energy Baseline
+
+**Last Recorded:** Not yet tracked
+**Pattern:** Unknown
+
+---
+
+## Last Session
+
+**Date:** —
+
+**Completed:**
+- (none yet)
+
+**Unfinished:**
+- (none yet)
+
+**Next Action:**
+- (none yet)
+
+---
+
+## Momentum Score Trend
+
+| Date | Score | Note |
+|------|-------|------|
+
+---
+
+## Weekly Review Log
+
+> Keep last 4 entries only. Archive older entries to a note.
+
+| Date | Threads Reviewed | Decisions | Focus Next Week |
+|------|-----------------|-----------|-----------------|
+
+**Last Review:** Not yet performed
+**Next Review:** [next Friday]
+```
+
+If the file exists but is missing any section from the template above
+(e.g. Holding Area), add the missing section with its default content.
 
 ---
 
@@ -156,6 +230,12 @@ If the user reported energy this session, update:
 ```markdown
 **Last Recorded:** [today's date], [High/Medium/Low]
 ```
+
+### 4.5 Weekly Review Log Pruning
+
+After any update to the Weekly Review Log, count the entries.
+If there are more than 4 entries, archive the oldest entries to a separate note
+(e.g. `~/.claude/weekly-review-archive.md`) and keep only the last 4 in STATUS.md.
 
 ---
 

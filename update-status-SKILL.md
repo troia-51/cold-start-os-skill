@@ -36,11 +36,21 @@ Read the current conversation and infer:
 1. What was the active thread / theme?
 2. What artifacts were created or worked on?
 3. What experiments were attempted?
-4. What is the current momentum score? (1-5, based on SKILL.md rubric)
+4. What is the current momentum score? (1-5, see rubric below)
 5. What is unfinished?
 6. What should the next action be?
 7. Did the user do any learning / study this session?
 8. If yes: what topics, what confidence level, what gaps identified?
+
+### Momentum Score Rubric (inline reference)
+
+| Score | Meaning | Example |
+|-------|---------|---------|
+| 5 | Direct Continuation | Same experiment, same question, next step |
+| 4 | Existing Thread | Same thread, new experiment |
+| 3 | Existing Theme | Same theme, different thread |
+| 2 | Mostly New | New direction, weak connection to existing threads |
+| 1 | Completely New | No connection to any active thread |
 
 Do NOT ask the user to repeat what already happened in the conversation.
 Infer first, then confirm.
@@ -86,9 +96,10 @@ Read the STATUS.md file at:
 ~/.claude/STATUS.md
 ```
 
-If the file does not exist, create it using the template structure from
-the good-morning SKILL.md (Active Threads, Energy Baseline, Last Session,
-Momentum Score Trend, Weekly Review Log).
+If the file does not exist, create it using the STATUS.md Template
+defined in the good-morning SKILL.md (look for "# STATUS.md Template" section).
+That template includes: Active Threads, Holding Area, Energy Baseline,
+Last Session, Momentum Score Trend, Weekly Review Log.
 
 ---
 
@@ -150,16 +161,25 @@ If the user reported energy this session, update:
 
 ## Step 4b｜Update Learning Tracker (if learning happened)
 
-If the user did any learning / study this session:
+**Skip criteria:** Skip this entire step if ALL of the following are true:
+- User did not study any new topics
+- User did not practice or review existing topics
+- No knowledge gaps were identified or resolved
+- Session was purely artifact/experiment work on active threads
+
+**If learning happened** (any of the above were true):
 
 1. Read `~/.claude/progress/learning-tracker.md`
+   - If file does not exist, create it from the template structure
 2. Update mastered topics: add date + confidence rating
 3. Add or update knowledge gaps with severity
 4. Update domain progress percentages and Quick Stats
 5. Create or update `~/.claude/sessions/YYYY-MM-DD/session-notes.md`
    using the template at `~/.claude/sessions/SESSION-TEMPLATE.md`
 
-If no learning happened this session, skip this step entirely.
+**Boundary rule:** Learning tracking covers topic mastery and knowledge gaps.
+Momentum tracking (Steps 4.1–4.4) covers thread progress and artifacts.
+If a session involves both, run both Step 4 and Step 4b independently.
 
 ---
 
@@ -168,8 +188,10 @@ If no learning happened this session, skip this step entirely.
 If new artifacts were created this session, add entries to:
 
 ```
-~/.claude/projects/<user>/memory/artifact-log.md
+~/.claude/projects/*/memory/artifact-log.md
 ```
+
+Use Glob to find the actual path (there is exactly one user directory under `~/.claude/projects/`).
 
 Format:
 

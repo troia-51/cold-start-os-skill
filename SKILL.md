@@ -106,6 +106,106 @@ and suggest running `/update-status` before proceeding.
 
 ---
 
+# STATUS.md Template
+
+Use this template when creating STATUS.md for the first time.
+
+```markdown
+---
+schema-version: 1
+---
+
+# STATUS.md
+
+> Source of truth for Momentum OS context recovery.
+> Update at end of every session. Read at start of every session.
+
+---
+
+## Active Threads
+
+### Thread 1 — (Slot Available)
+
+Maximum 3 active threads.
+
+### Thread 2 — (Slot Available)
+
+
+
+### Thread 3 — (Slot Available)
+
+
+
+---
+
+## Holding Area
+
+> New signals that haven't been attached to a thread yet.
+> Auto-expire after 24h if not claimed.
+
+| Signal | Received | Expires | Related Theme |
+|--------|----------|---------|---------------|
+
+---
+
+## Energy Baseline
+
+**Last Recorded:** Not yet tracked
+**Pattern:** Unknown
+
+---
+
+## Last Session
+
+**Date:** —
+
+**Completed:**
+- (none yet)
+
+**Unfinished:**
+- (none yet)
+
+**Next Action:**
+- (none yet)
+
+---
+
+## Momentum Score Trend
+
+| Date | Score | Note |
+|------|-------|------|
+
+---
+
+## Weekly Review Log
+
+> Keep last 4 entries only. Archive older entries to a note.
+
+| Date | Threads Reviewed | Decisions | Focus Next Week |
+|------|-----------------|-----------|-----------------|
+
+**Last Review:** Not yet performed
+**Next Review:** [next Friday]
+```
+
+---
+
+# First-Run Handling
+
+If STATUS.md does not exist at `~/.claude/STATUS.md`:
+
+1. Create it from the template above
+2. Log this as the first session
+3. Skip Context Recovery (nothing to recover)
+4. Proceed directly to Step 0
+
+If learning-tracker.md does not exist at `~/.claude/progress/learning-tracker.md`:
+
+1. Create it from the template at `~/.claude/sessions/SESSION-TEMPLATE.md` structure
+2. Skip Learning Status in Momentum State output
+
+---
+
 # Step -1｜Context Recovery
 
 Read:
@@ -141,6 +241,11 @@ Learning Status (if tracker exists):
 - Top unresolved gaps: [list up to 3]
 - Last study session: [date]
 
+Weekly Review Status:
+- Last Review: [date]
+- If today is Friday and review not done this week → flag: "今日係 Friday，記得 run Weekly Review"
+- If last review > 10 days ago → flag: "Weekly Review overdue，建議 run 一次"
+
 Do not generate new ideas during Context Recovery.
 
 Only reconstruct state.
@@ -151,7 +256,7 @@ Only reconstruct state.
 
 Ask exactly:
 
-三件事：
+四件事：
 
 1. 上次 artifact 係咩？完成咗未？
 2. 依家卡喺邊？
